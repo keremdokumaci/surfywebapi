@@ -1,9 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const login = (req,res,next) => {
+    res.send("deneme");
+}
 
-router.get('/',(req,res,next) => {
-    res.send('deneme');
-});
-
-
-module.exports = router;
+module.exports = {login};

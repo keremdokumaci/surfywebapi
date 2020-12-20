@@ -1,7 +1,22 @@
 var signin = require('./SigninController/SigninController');
+var signup = require('./SignupController/SignupController');
+var chatroom = require('./ChatroomController/ChatroomController');
 
 const CatchAllCalls = (app) => {
-    app.use('/signin',signin);
+    app
+        .route('/login')
+        .post(signin.login);
+
+    app
+        .route('/signup')
+        .post(signup.createUser)
+
+    app
+        .route('/chatroom')
+        .post(chatroom.create)
+
+    
+    
 }
 
 module.exports = CatchAllCalls;
