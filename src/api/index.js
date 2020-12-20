@@ -14,6 +14,10 @@ const CatchAllCalls = (app) => {
     app
         .route('/chatroom')
         .post(chatroom.create)
+    
+    app
+        .route('/chatroom')
+        .get(chatroom.get)
 
     
     

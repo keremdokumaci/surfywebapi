@@ -13,4 +13,17 @@ const create = (req,res,next) => {
 
 }
 
-module.exports = {create};
+const get = (req,res,next) => {
+    var chatrooms = db.ref("chatrooms");
+
+    chatrooms.once('value', 
+    (snapshot) => {
+        res.status(200).json({chatrooms:snapshot.val()});
+    },
+    (err) => {
+        console.log(err);
+    }
+    )
+}
+
+module.exports = {create, get};
