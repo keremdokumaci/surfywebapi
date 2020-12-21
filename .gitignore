@@ -26,4 +26,4 @@ coverage
 # Benchmarking
 benchmarks/graphs
 
-connection.js
+.env.development

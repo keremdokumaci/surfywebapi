@@ -1,7 +1,7 @@
 var firebase = require("firebase");
 
 var firebaseConfig = {
-    apiKey: "AIzaSyAmqOedXdhT0BGym-YHRdyaYQ7xWIKXd_g",
+    apiKey: process.env.NODE_ENV_FIREBASE_API_KEY,
     authDomain: "surfy-8e145.firebaseapp.com",
     databaseURL: "https://surfy-8e145-default-rtdb.firebaseio.com",
     projectId: "surfy-8e145",
