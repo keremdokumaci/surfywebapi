@@ -26,4 +26,16 @@ const get = (req,res,next) => {
     )
 }
 
-module.exports = {create, get};
+const getById = (req,res,next) => {
+    var chatrooms = db.ref("chatrooms");
+
+    chatrooms.child('-'+req.url.split('/')[2]).once('value', 
+    (snapshot) => {
+        res.status(200).json({chatroom:snapshot.val()});
+    },
+    (err) => {
+        console.log(err);
+    }
+    )
+}
+module.exports = {create, get, getById};

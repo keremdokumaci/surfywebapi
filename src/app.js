@@ -1,5 +1,11 @@
 var app = require('express')();
 var http = require('http').createServer(app);
+var io = require('socket.io')(http,{
+    cors: {
+        origin: '*',
+    }
+});
+
 var bodyParser = require('body-parser');
 
 var CatchAllCalls = require('./api/index');
@@ -18,6 +24,9 @@ app.use((req,res,next) => {
 
 CatchAllCalls(app);
 
+io.on('connection', (socket) => {
+    console.log('a user connected');
+});
 
 http.listen(5000,()=>{
     console.log('surfy server is listening..');
