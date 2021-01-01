@@ -8,7 +8,7 @@ var io = require('socket.io')(http,{
 
 var bodyParser = require('body-parser');
 
-var CatchAllCalls = require('./api/index');
+var CatchAllApiCalls = require('./api/index');
 
 app.use(bodyParser.json())
 
@@ -22,10 +22,15 @@ app.use((req,res,next) => {
 
 
 
-CatchAllCalls(app);
+CatchAllApiCalls(app);
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    socket.on('JOIN_ROOM',room => {
+        socket.join(room.roomId);
+    });
+    socket.on('NEW_MESSAGE', (message) => {
+        io.to(message.roomId).emit('NEW_MESSAGE',message);
+    });
 });
 
 http.listen(5000,()=>{
