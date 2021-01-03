@@ -9,19 +9,23 @@ const CatchAllCalls = (app) => {
 
     app
         .route('/signup')
-        .post(signup.createUser)
+        .post(signup.createUser);
 
     app
         .route('/chatroom')
-        .post(chatroom.create)
+        .post(chatroom.create);
     
     app
         .route('/chatroom')
-        .get(chatroom.get)
+        .get(chatroom.get);
 
     app
         .route('/chatroom/:roomId')
-        .get(chatroom.getById)
+        .get(chatroom.getById);
+
+    app
+        .route('/chatroom/:roomId/users')
+        .get(chatroom.getChatroomsUsers);
     
     
 }

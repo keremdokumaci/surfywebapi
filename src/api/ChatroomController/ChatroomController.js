@@ -5,6 +5,7 @@ const create = (req,res,next) => {
     var chatrooms = db.ref("chatrooms");
     var ref = chatrooms.push();
     chatroom['roomId'] = ref.key.replace('-','');
+    chatroom['activeUsers'] = [];
 
     ref.set(chatroom)
         .then(() => {
@@ -38,4 +39,20 @@ const getById = (req,res,next) => {
     }
     )
 }
-module.exports = {create, get, getById};
+
+const getChatroomsUsers = (req,res,next) => {
+    var chatrooms = db.ref("chatrooms");
+    chatrooms.child('-'+req.url.split('/')[2]).once('value', 
+    (snapshot) => {
+        const data = snapshot.val();
+        if(!!data)
+            res.status(200).json({activeUsers: data.activeUsers});
+        else
+            next();
+    },
+    (err) => {
+        console.log(err);
+    }
+    )
+}
+module.exports = {create, get, getById, getChatroomsUsers};
