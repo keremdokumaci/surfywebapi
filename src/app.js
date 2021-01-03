@@ -50,6 +50,6 @@ io.on('connection', (socket) => {
     });
 });
 
-http.listen(5000,'192.168.1.38',()=>{
+http.listen(5000,()=>{
     console.log('surfy server is listening..');
 });
