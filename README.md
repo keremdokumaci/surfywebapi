@@ -7,3 +7,5 @@ This project is backend of Surfy Chat App.
   - Fill required fields in database/connection.js (firebaseConfig)
   - execute npm install to install required packages
   - npm start to start server on port 5000
+
+![](https://github.com/keremdokumaci/Images/blob/main/sutfy-gif.gif)
