@@ -41,11 +41,15 @@ io.on('connection', (socket) => {
         io.to(message.roomId).emit('NEW_MESSAGE',message);
     });
 
+    socket.on('NEW_FRAME', (data) => {
+        io.to(data.roomId).emit('NEW_FRAME',data);
+    });
+
     socket.on('disconnect', () => {
         console.log('DISCONNECTION');
     });
 });
 
-http.listen(5000,()=>{
+http.listen(5000,'192.168.1.38',()=>{
     console.log('surfy server is listening..');
 });
